@@ -1,0 +1,125 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>...</title>
+		
+		<script>
+			
+			class Pracownik {
+				constructor(imie, nazwisko, etat, pensja){
+					this.imie = imie;
+					this.nazwisko = nazwisko; 
+					this.etat = etat; 
+					this.pensja = pensja; 
+					}
+			}
+			
+			class PracownikController {
+				
+				constructor(){
+					this.baza = []; 
+				}
+				
+				dodaj(imie, nazwisko, etat = "staż", pensja = 1000){
+				
+				let obiekt = new Pracownik (imie, nazwisko, etat, pensja); 
+				this.baza.push(obiekt); 
+				
+				}
+				
+				pokaz(){
+					for (let elem of this.baza) {
+					
+						console.log(`Imię: ${elem.imie} Nazwisko:${elem.nazwisko} Etat: ${elem.etat} Pensja: ${elem.pensja}
+						`); 
+						
+					}
+				}
+				
+				usun(nazwisko){
+					
+						for (let xx in this.baza) {
+							if (nazwisko == this.baza[xx].nazwisko) {
+							this.baza.splice(xx, 1);			// trzeba było po przecinku wpisać 1, żeby splice wyciął tylko jeden element, a nie resztę zaczynając od wskazanego elementu
+							break; 
+						}
+					}
+				
+				}
+				
+				zmien(e_nazwisko, pensja){
+				
+					for (let nn of this.baza) {
+							if (e_nazwisko == nn.nazwisko){
+								nn.etat = "etat"; 
+								nn.pensja = pensja;
+									break; 
+								}
+							}
+						}
+					}
+
+			
+			class Firma extends PracownikController {
+				
+				constructor(nazwaFirmy){
+					super(); 
+					this.nazwaFirmy = nazwaFirmy; 
+					this.menu(); 
+				}
+				
+				menu(){
+					while(true){
+					
+						let dec = prompt(`Witaj w firmie ${this.nazwaFirmy} \n\n D-dodaj, P-pokaż, U-usuń, Z-zmień, K- koniec`).toUpperCase(); 
+						
+						if (dec == "D"){
+							let p_imie = prompt("Podaj imię pracownika");
+							let p_nazwisko = prompt("Podaj nazwisko pracownika");
+							let p_etat = prompt("Podaj etat pracownika [S/E]"). toUpperCase();
+							
+							if (p_etat == "S") {
+								this.dodaj(p_imie, p_nazwisko); 
+							}
+							else if (p_etat == "E") {
+								let p_pensja = parseInt(prompt("Podaj wysokość pensji"));
+								this.dodaj(p_imie, p_nazwisko, "etat", p_pensja);				 //wartośći przwkazjujemy w tej samej kolejności, co ukaład paramentrów w kontrolerze
+							}
+						}
+						else if (dec == "P"){
+							this.pokaz(); 
+						}
+						else if (dec == "U"){
+							let nazwisko = prompt("Podaj nazwisko pracownika do usunięcia");
+							this.usun(nazwisko); 
+						}
+						else if (dec == "Z"){
+							let e_nazwisko = prompt("Podaj nazwisko pracownika, któremu chcesz zmienić etat");
+							let pensja = parseInt(prompt("Podaj nową pensję")); 
+							this.zmien(e_nazwisko, pensja); 
+						
+						}
+						else if (dec == "K"){
+							break; 
+						}else{
+						
+							alert("Opcja menu nierozpoznana"); 
+						}
+						
+						} 
+					}
+				
+				}
+	
+			
+			firma = new Firma("PZU"); 
+			
+		
+		</script> 
+	</head>
+	<body>
+
+		
+	</body>
+</html>

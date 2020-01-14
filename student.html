@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>...</title>
+		
+		<script>
+		class Student{
+		
+		constructor(imie, nazwisko, wiek){
+			this.imie = imie;
+			this.nazwisko = nazwisko;
+			this.wiek = wiek; 
+			}
+			
+			przedstawSie(){
+				return (`Nazywam się ${this.imie} ${this.nazwisko} i mam ${this.wiek} lat <br/>`);  
+			}
+		}
+		
+		let dziennik = []; 
+		
+		while(true){
+			let p_imie = prompt("Podaj imię");
+			let p_nazwisko = prompt("Podaj nazwisko");
+			let p_wiek = prompt("Podaj wiek");
+			
+			if (p_imie == "" && p_nazwisko ==""){
+				break; 
+			}
+			student = new Student(p_imie, p_nazwisko, p_wiek); 
+			dziennik.push(student); 
+			
+		}
+		
+		for (let ob of dziennik){
+			document.write(ob.przedstawSie()); 
+		}
+		
+		</script> 
+	</head>
+	<body>
+
+		
+	</body>
+</html>

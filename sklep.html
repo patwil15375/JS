@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>...</title>
+		
+		<script>
+		class Koszyk {
+		
+			constructor(){
+				this.zakupy = new Map();
+			}
+			
+			dodaj(produkt, ilosc){
+			
+					if (this.zakupy.has(produkt) == true){ 
+						let dotychczasowaIlosc = this.zakupy.get(produkt);
+						this.zakupy.set(produkt, dotychczasowaIlosc + ilosc); 
+					}
+					else{
+					this.zakupy.set(produkt, ilosc);
+					}
+				}
+			}
+		
+		let kolejka = []; 
+		let sklep = new Map();
+		sklep.set ("sok", 1.5);
+		sklep.set ("woda", 1.2); 
+		sklep.set ("szynka", 4.3);
+		sklep.set ("ser", 3.7);
+		sklep.set ("owoce", 2.85);
+		
+		while(true){
+			let decyzja = prompt("Czy chcesz rozpocząć zakupy? Wpisz t jeśli tak, n jeśli nie");
+			if(decyzja == "n") {
+				break;
+			}
+			else {
+			koszyk = new Koszyk(); 
+			
+			while(true){
+				
+				let produkt = prompt("Podaj nazwę produktu"); 
+				
+				if(produkt == ""){
+					break;
+					
+				}else if (sklep.has(produkt) == false){
+					alert("Nie posiadamy tego produktu"); 
+				}
+				else{
+					let ilosc = parseInt(prompt("Podaj ilość")); 
+					koszyk.dodaj(produkt, ilosc);
+					}
+				}
+			
+			}
+			
+			kolejka.push(koszyk); 
+			}
+		
+		//Podsumowanie koszyków
+		let klient = 0; 
+		
+		for (let obj of kolejka){
+		
+			let suma = 0; 
+			let wartosc = 0; 
+		
+			document.write(`Klient ${klient += 1} <br/>`); 
+			
+			for(let elem of obj.zakupy.keys()){
+				suma += obj.zakupy.get(elem) *  sklep.get(elem); 
+				wartosc = obj.zakupy.get(elem) * sklep.get(elem); 
+				
+				document.write(`Produkt: ${elem}, ilość: ${obj.zakupy.get(elem)}, wartość: ${wartosc} <br/>`);
+			}
+			
+			document.write(`Razem do zapłaty: ${suma} <br/>`); 
+		} 
+
+		</script> 
+	</head>
+	<body>
+
+		
+	</body>
+</html>

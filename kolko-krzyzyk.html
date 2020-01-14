@@ -1,0 +1,51 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>...</title>
+		
+		<script>
+		
+			let gra = [[0, 0, 0], [0, 0, 0], [0, 0, 0]]; 
+			let gracz = "O";
+			
+			while(true){
+			
+			let wsp = prompt("Gracz " + gracz + " podaj współczędne:");
+			let x = parseInt(wsp[0]);
+			let y = parseInt(wsp[1]); 
+			
+			gra [x][y] = gracz; 
+			
+			if(
+				(gra[0][0] == gra[1][0] && gra[0][0] == gra[2][0] && gra[0][0] != 0)||
+				(gra[0][1] == gra[1][1] && gra[0][1] == gra[2][1] && gra[0][1] != 0)||
+				(gra[0][2] == gra[1][2] && gra[0][2] == gra[2][2] && gra[0][2] != 0)||
+				
+				(gra[0][0] == gra[0][1] && gra[0][0] == gra[0][2] && gra[1][0] != 0)||
+				(gra[1][0] == gra[1][1] && gra[1][0] == gra[1][2] && gra[1][0] != 0)||
+				(gra[2][0] == gra[2][1] && gra[2][0] == gra[2][2] && gra[2][0] != 0)||
+				
+				(gra[0][0] == gra[1][1] && gra[0][0] == gra[2][2] && gra[0][0] != 0)||
+				(gra[0][2] == gra[1][1] && gra[0][2] == gra[2][0] && gra[0][2] != 0)
+				
+			){
+				alert("Wygrał gracz " +gracz); 
+				break; 
+			}
+			
+			if(gracz == "O"){
+				gracz = "X"; 
+			}else {
+				gracz = "O"; 
+			}
+			
+		}
+			
+		</script> 
+	</head>
+	<body>
+
+		
+	</body>
+</html>
